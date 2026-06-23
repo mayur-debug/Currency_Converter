@@ -6,7 +6,6 @@ const fromcurr=document.querySelector(".from select");
 const tocurr=document.querySelector(".to select");
 const msg=document.querySelector(".msg");
 
-
 for(let select of dropdown){
     for( let currcode in countryList){
         let newoption= document.createElement("option");
@@ -15,17 +14,14 @@ for(let select of dropdown){
         if(select.name==="from"&& currcode==="USD"){
             newoption.selected="selected";
         }
-        
         if(select.name==="to"&& currcode==="INR"){  
             newoption.selected="selected";
         }
         select.append(newoption);
-
     }
     select.addEventListener("change",(evt)=>{
         updateFlag(evt.target);
     });
-
 }
 
 const updateFlag=(element)=>{
@@ -34,7 +30,6 @@ const updateFlag=(element)=>{
     let newsrc=`https://flagsapi.com/${countrycode}/flat/64.png`;
     let img=element.parentElement.querySelector("img");
     img.src=newsrc;
-
 };
 
 btn.addEventListener("click", async (evt)=>{
@@ -45,13 +40,11 @@ btn.addEventListener("click", async (evt)=>{
         amtvalue=1;
         amount.value="1";
     }
-
     const URL = `${BASE_URL}/${fromcurr.value.toLowerCase()}.json`;
    let response = await fetch(URL);
 let data = await response.json();
 let rate =data[fromcurr.value.toLowerCase()][tocurr.value.toLowerCase()]; 
     console.log(response);
-
-        let finalamount=amtvalue * rate;
- msg.innerText = `${amtvalue} ${fromcurr.value} = ${finalamount} ${tocurr.value}`;                          
+    let finalamount=amtvalue * rate;
+    msg.innerText = `${amtvalue} ${fromcurr.value} = ${finalamount} ${tocurr.value}`;                          
 });
