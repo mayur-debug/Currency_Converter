@@ -48,3 +48,8 @@ let rate =data[fromcurr.value.toLowerCase()][tocurr.value.toLowerCase()];
     let finalamount=amtvalue * rate;
     msg.innerText = `${amtvalue} ${fromcurr.value} = ${finalamount} ${tocurr.value}`;                          
 });
+amountInput.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") {
+        convertCurrency();
+    }
+});
