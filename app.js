@@ -5,6 +5,8 @@ const btn=document.querySelector("form button");
 const fromcurr=document.querySelector(".from select");
 const tocurr=document.querySelector(".to select");
 const msg=document.querySelector(".msg");
+const swapBtn = document.querySelector("#swap-btn");
+const amountInput = document.querySelector("#amount");
 
 for(let select of dropdown){
     for( let currcode in countryList){
@@ -32,7 +34,7 @@ const updateFlag=(element)=>{
     img.src=newsrc;
 };
 
-btn.addEventListener("click", async (evt)=>{
+let convert=btn.addEventListener("click", async (evt)=>{
     evt.preventDefault();
     let amount= document.querySelector(".amount input");
     let amtvalue=amount.value;
@@ -52,4 +54,12 @@ amountInput.addEventListener("keypress", (e) => {
     if (e.key === "Enter") {
         convertCurrency();
     }
+});
+swapBtn.addEventListener("click", () => {
+    let temp = fromcurr.value;
+    fromcurr.value = tocurr.value;
+    tocurr.value = temp;
+
+    updateFlag(fromcurr);
+    updateFlag(tocurr);
 });
