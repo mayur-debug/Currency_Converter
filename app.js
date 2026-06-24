@@ -36,13 +36,13 @@ btn.addEventListener("click", async (evt)=>{
     evt.preventDefault();
     let amount= document.querySelector(".amount input");
     let amtvalue=amount.value;
-    if(amtvalue===""||amtvalue<1){
-        amtvalue=1;
-        amount.value="1";
-    }
+   if (amtvalue <= 0 || isNaN(amtvalue)) {
+    msg.innerText = "Please enter a valid amount";
+    return;
+}
     const URL = `${BASE_URL}/${fromcurr.value.toLowerCase()}.json`;
-   let response = await fetch(URL);
-let data = await response.json();
+   const response = await fetch(URL);
+   const data = await response.json();
 let rate =data[fromcurr.value.toLowerCase()][tocurr.value.toLowerCase()]; 
     console.log(response);
     let finalamount=amtvalue * rate;
