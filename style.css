@@ -81,3 +81,11 @@ form button {
     font-size: 1.15rem;
     cursor: pointer;
 }
+#swap-btn {
+   width: 3rem;
+   display: flex;
+   justify-content: center;
+    align-items: center;
+
+    cursor: pointer;
+}
